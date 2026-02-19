@@ -1,4 +1,3 @@
-
 class Pizzero
 class Cliente
 class ClienteRegular
@@ -70,8 +69,4 @@ Cliente o-- Calificacion
 Cliente o-- Propina
 Tienda o-- Mejora
 Competencia o-- Cliente
-Dia o-- Reputacion 
-
-
-
-
+Dia o-- Reputacion

@@ -71,3 +71,7 @@ Cliente o-- Propina
 Tienda o-- Mejora
 Competencia o-- Cliente
 Dia o-- Reputacion 
+
+
+
+

@@ -1,0 +1,73 @@
+
+class Pizzero
+class Cliente
+class ClienteRegular
+class ClienteExigente
+class ClienteRaro
+class Pizza
+class Masa
+class Salsa
+class Ingrediente
+class Queso
+class Peperoni
+class Vegetal
+class IngredienteEspecial
+class Horno
+class Cortador
+class Caja
+class Pedido
+class Receta
+class Dinero
+class Propina
+class Reputacion
+class Tienda
+class Mejora
+class Herramienta
+class Competencia
+class Dia
+class Calificacion
+class Menu
+class Decoracion
+class Historia
+
+ClienteRegular --|> Cliente
+ClienteExigente --|> Cliente
+ClienteRaro --|> Cliente
+
+Queso --|> Ingrediente
+Peperoni --|> Ingrediente
+Vegetal --|> Ingrediente
+IngredienteEspecial --|> Ingrediente
+
+Cortador --|> Herramienta
+Horno --|> Herramienta
+Caja --|> Herramienta
+
+Propina --|> Dinero
+
+Pizza *-- Masa
+Pizza *-- Salsa
+Pizza *-- Ingrediente
+Pedido *-- Pizza
+Pedido *-- Calificacion
+Tienda *-- Menu
+Tienda *-- Decoracion
+Tienda *-- Herramienta
+Tienda *-- Reputacion
+Dia *-- Pedido
+Dia *-- Dinero
+Dia *-- Historia
+Menu *-- Receta
+Receta *-- Ingrediente
+
+Pizzero o-- Horno
+Pizzero o-- Cortador
+Pizzero o-- Caja
+Pizzero o-- Receta
+Pizzero o-- Mejora
+Cliente o-- Pedido
+Cliente o-- Calificacion
+Cliente o-- Propina
+Tienda o-- Mejora
+Competencia o-- Cliente
+Dia o-- Reputacion 

@@ -3,7 +3,7 @@ class Pizza{
  -Masa masa
  -Salsa salsa
  -Ingrediente ingrediente[]
-}
+} 
 
 class Pedido{
  -Pizza pizza
@@ -13,10 +13,6 @@ class Pedido{
 class Tienda{
  -Menu menu
  -Decoracion decoracion[]
- -Herramienta herramienta[]
- -Reputacion reputacion
-
- +agregarMejora : Accion(Mejora)
 }
 
 class Dia{
@@ -43,9 +39,6 @@ class Pizzero{
 
  +usarCaja : Accion(Caja)
 
- +usarReceta : Accion(Receta[])
-
- +usarMejora : Accion(Mejora[])
 }
 
 class Cliente{
@@ -54,7 +47,7 @@ class Cliente{
 
  +calificarPedido : Accion(Calificacion)
 
- +darPropina : Accion(Propina)
+
 }
 
 class Competencia{

@@ -1,29 +1,80 @@
 @startuml
-Pizza        "1" *-- "1"    Masa
-Pizza        "1" *-- "1"    Salsa
-Pizza        "1" *-- "0..*" Ingrediente
-Pedido       "1" *-- "1"    Pizza
-Pedido       "1" *-- "1"    Calificacion
-Tienda       "1" *-- "1"    Menu
-Tienda       "1" *-- "0..*" Decoracion
-Tienda       "1" *-- "1..*" Herramienta
-Tienda       "1" *-- "1"    Reputacion
-Dia          "1" *-- "1..*" Pedido
-Dia          "1" *-- "1"    Dinero
-Dia          "0..*" *-- "1" Historia
-Menu         "1" *-- "0..*" Receta
-Receta       "1" *-- "1..*" Ingrediente
+class Pizza{
+ -Masa masa
+ -Salsa salsa
+ -Ingrediente ingrediente[]
+}
 
-Pizzero      "1" o-- "1"    Horno
-Pizzero      "1" o-- "1"    Cortador
-Pizzero      "1" o-- "1"    Caja
-Pizzero      "1" o-- "0..*" Receta
-Pizzero      "1" o-- "0..*" Mejora
-Cliente      "1" o-- "1"    Pedido
-Cliente      "1" o-- "1"    Calificacion
-Cliente      "1" o-- "0..1" Propina
-Tienda       "1" o-- "0..*" Mejora
-Competencia  "1" o-- "1..*" Cliente
-Dia          "1" o-- "1"    Reputacion
+class Pedido{
+ -Pizza pizza
+ -Calificacion calificacion
+}
+
+class Tienda{
+ -Menu menu
+ -Decoracion decoracion[]
+ -Herramienta herramienta[]
+ -Reputacion reputacion
+
+ +agregarMejora : Accion(Mejora)
+}
+
+class Dia{
+ -Pedido pedido[]
+ -Dinero dinero
+ -Historia historia[]
+
+ +usarReputacion : Accion(Reputacion)
+}
+
+class Menu{
+ -Receta receta[]
+}
+
+class Receta{
+ -Ingrediente ingrediente[]
+}
+
+class Pizzero{
+
+ +usarHorno : Accion(Horno)
+
+ +usarCortador : Accion(Cortador)
+
+ +usarCaja : Accion(Caja)
+
+ +usarReceta : Accion(Receta[])
+
+ +usarMejora : Accion(Mejora[])
+}
+
+class Cliente{
+
+ +hacerPedido : Accion(Pedido)
+
+ +calificarPedido : Accion(Calificacion)
+
+ +darPropina : Accion(Propina)
+}
+
+class Competencia{
+
+ +atraerCliente : Accion(Cliente[1..])
+}
+
+class Masa{}
+class Salsa{}
+class Ingrediente{}
+class Calificacion{}
+class Decoracion{}
+class Herramienta{}
+class Reputacion{}
+class Dinero{}
+class Historia{}
+class Horno{}
+class Cortador{}
+class Caja{}
+class Mejora{}
+class Propina{}
 
 @enduml

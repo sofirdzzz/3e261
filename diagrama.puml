@@ -1,80 +1,120 @@
 @startuml
-class Pizza{
- -Masa masa
- -Salsa salsa
- -Ingrediente ingrediente[]
+
+class Pizza {
+  - Masa masa
+  - Salsa salsa
+  - Ingrediente ingrediente[]
 }
 
-class Pedido{
- -Pizza pizza
- -Calificacion calificacion
+class Pedido {
+  - Pizza pizza
+  - Calificacion calificacion
 }
 
-class Tienda{
- -Menu menu
- -Decoracion decoracion[]
- -Herramienta herramienta[]
- -Reputacion reputacion
-
- +agregarMejora : Accion(Mejora)
+class Tienda {
+  - Menu menu
+  - Decoracion decoracion[]
+  - Herramienta herramienta[]
+  - Reputacion reputacion
 }
 
-class Dia{
- -Pedido pedido[1..]
- -Dinero dinero
- -Historia historia[]
-
- +usarReputacion : Accion(Reputacion)
+class Dia {
+  - Pedido pedido[]
+  - Dinero dinero
+  - Historia historia[]
 }
 
-class Menu{
- -Receta receta[]
+class Menu {
+  - Receta receta[]
 }
 
-class Receta{
- -Ingrediente ingrediente[]
+class Receta {
+  - Ingrediente ingrediente[]
 }
 
-class Pizzero{
-
- +usarHorno : Accion(Horno)
-
- +usarCortador : Accion(Cortador)
-
- +usarCaja : Accion(Caja)
-
- +usarReceta : Accion(Receta[])
-
- +usarMejora : Accion(Mejora[])
+class Pizzero {
+  - Horno horno
+  - Cortador cortador
+  - Caja caja
+  - Receta receta[]
+  - Mejora mejora[]
 }
 
-class Cliente{
+class Masa {}
+class Salsa {}
 
- +hacerPedido : Accion(Pedido)
-
- +calificarPedido : Accion(Calificacion)
-
- +darPropina : Accion(Propina)
+class Ingrediente {
+  + Agregar(Pizzero) 
 }
 
-class Competencia{
-
- +atraerCliente : Accion(Cliente[])
+class Calificacion {
+  + Calificar(Cliente) 
 }
 
-class Masa{}
-class Salsa{}
-class Ingrediente{}
-class Calificacion{}
-class Decoracion{}
-class Herramienta{}
-class Reputacion{}
-class Dinero{}
-class Historia{}
-class Horno{}
-class Cortador{}
-class Caja{}
-class Mejora{}
-class Propina{}
+class Decoracion {}
+class Herramienta {}
+
+class Reputacion {
+  + Usar(Dia)
+}
+
+class Dinero {}
+class Historia {}
+
+class Horno {
+  + Usar(Pizzero) 
+}
+
+class Cortador {
+  + Usar(Pizzero) 
+}
+
+class Caja {
+  + Usar(Pizzero)
+}
+
+class Mejora {
+  + Agregar(Tienda) 
+  + Usar(Pizzero)
+}
+
+class Pedido {
+  + HacerPedido(Cliente) 
+}
+
+class Propina {
+  + Dar(Cliente) 
+}
+
+class Cliente {
+  + AtraerCliente(Competencia) 
+}
+
+Pizza    "1" *-- "1"    Masa
+Pizza    "1" *-- "1"    Salsa
+Pizza    "1" *-- "1..*" Ingrediente
+Pedido   "1" *-- "1"    Pizza
+Pedido   "1" *-- "1"    Calificacion
+Tienda   "1" *-- "1"    Menu
+Tienda   "1" *-- "1..*" Decoracion
+Tienda   "1" *-- "1..*" Herramienta
+Tienda   "1" *-- "1"    Reputacion
+Dia      "1" *-- "1..*" Pedido
+Dia      "1" *-- "1"    Dinero
+Dia      "1" *-- "1..*" Historia
+Menu     "1" *-- "1..*" Receta
+Receta   "1" *-- "1..*" Ingrediente
+
+Pizzero     "1"    o-- "1"    Horno
+Pizzero     "1"    o-- "1"    Cortador
+Pizzero     "1"    o-- "1"    Caja
+Pizzero     "1"    o-- "1..*" Receta
+Pizzero     "1"    o-- "0..*" Mejora
+Cliente     "1"    o-- "1"    Pedido
+Cliente     "1"    o-- "1"    Calificacion
+Cliente     "1"    o-- "0..1" Propina
+Competencia "1"    o-- "1..*" Cliente
+Tienda      "1"    o-- "1"    Mejora
+Dia         "1"    o-- "1"    Reputacion
 
 @enduml

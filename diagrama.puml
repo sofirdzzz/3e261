@@ -13,7 +13,7 @@ class Pedido{
 class Tienda{
  -Menu menu
  -Decoracion decoracion[]
- -Herramienta herramienta[1..]
+ -Herramienta herramienta[]
  -Reputacion reputacion
 
  +agregarMejora : Accion(Mejora)
@@ -32,7 +32,7 @@ class Menu{
 }
 
 class Receta{
- -Ingrediente ingrediente[1..]
+ -Ingrediente ingrediente[]
 }
 
 class Pizzero{
@@ -59,7 +59,7 @@ class Cliente{
 
 class Competencia{
 
- +atraerCliente : Accion(Cliente[1..])
+ +atraerCliente : Accion(Cliente[])
 }
 
 class Masa{}
